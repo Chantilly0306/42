@@ -1,4 +1,5 @@
 #include "rush02.h"
+#include <stdio.h>
 
 int main(int argc, char **argv)
 {
@@ -21,13 +22,17 @@ int main(int argc, char **argv)
         return (0);
     }
     buf = read_to_malloc_buf(path);
-    if (buf == 0)
+    if (!buf)
     {
         write(1, "Dict Error\n", 11);
-        free(buf);
         return (0);
     }
     lines = count_lines(buf);
+
+    printf("%d\n", lines);
+    printf("%s\n\n", number);
+    printf("%s", buf);
+
     free(buf);
     return (0);
 }
