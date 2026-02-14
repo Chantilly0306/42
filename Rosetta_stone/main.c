@@ -1,25 +1,33 @@
 #include "rush02.h"
 
-
-
 int main(int argc, char **argv)
 {
-    char    *dict_path;
-    char    *number_to_convert;
+    char    *path;
+    char    *number;
+    char    *buf;
+    int     lines;
 
-    dict_path = "numbers.dict";
+    path = "numbers.dict";
     if (argc == 2)
-        number_to_convert = argv[1];
+        number = argv[1];
     else if (argc == 3)
     {
-        dict_path = argv[1];
-        number_to_convert = argv[2];
+        path = argv[1];
+        number = argv[2];
     }
     else
     {
         write(1, "Error\n", 6);
-        return (1);
+        return (0);
     }
-    open_file(dict_path);
+    buf = read_to_malloc_buf(path);
+    if (buf == 0)
+    {
+        write(1, "Dict Error\n", 11);
+        free(buf);
+        return (0);
+    }
+    lines = count_lines(buf);
+    free(buf);
     return (0);
 }
