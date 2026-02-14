@@ -20,6 +20,6 @@ int main(int argc, char **argv)
         write(1, "Error\n", 6);
         return (1);
     }
-    
+    open_file(dict_path);
     return (0);
 }
