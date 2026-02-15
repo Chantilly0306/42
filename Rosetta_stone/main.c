@@ -1,38 +1,21 @@
 #include "rush02.h"
-#include <stdio.h>
 
 int main(int argc, char **argv)
 {
     char    *path;
-    char    *number;
-    char    *buf;
-    int     lines;
+    char    *input;
+    int     len;
 
     path = "numbers.dict";
-    if (argc == 2)
-        number = argv[1];
-    else if (argc == 3)
-    {
+    if (argc < 2 || argc > 3)
+        return (write(1, "Error\n", 6), 0);
+    if (argc == 3)
         path = argv[1];
-        number = argv[2];
-    }
-    else
-    {
-        write(1, "Error\n", 6);
-        return (0);
-    }
-    buf = read_to_malloc_buf(path);
-    if (!buf)
-    {
-        write(1, "Dict Error\n", 11);
-        return (0);
-    }
-    lines = count_lines(buf);
-
-    printf("%d\n", lines);
-    printf("%s\n\n", number);
-    printf("%s", buf);
-
-    free(buf);
+    input = argv[argc - 1];
+    len = valid_len(input);
+    if (len == 0)
+        return (write(1, "Error\n", 6), 0);
+    if (convert(path, input, len) == 0)
+		write(1, "Dict Error\n", 11);
     return (0);
 }

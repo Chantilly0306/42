@@ -50,3 +50,21 @@ int ft_strcmp(char *s1, char *s2)
             i++;
     return (s1[i] - s2[i]);
 }
+
+char	*ft_strncpy(char *dest, char *src, int n)
+{
+	int	i;
+
+	i = 0;
+	while (src[i] && i < n)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	while (i < n)
+	{
+		dest[i] = '\0';
+		i++;
+	}
+	return (dest);
+}

@@ -37,8 +37,7 @@ int count_lines(char *buf)
     lines = 0;
     while (buf[i])
     {
-        while (buf[i] == ' ' || (buf[i] >= 9 && buf[i] <= 13))
-            i++;
+        i = skip_whitespace(buf, i);
         if (buf[i] == '\0')
             break ;
         k = 0;
@@ -115,10 +114,7 @@ char    *read_to_malloc_buf(char *path)
         return (0);
     fd = open(path, O_RDONLY);
     if (fd == -1)
-    {
-        free(buf);
-        return (0);
-    }
+        return (free(buf), NULL);
     bytes_read = read(fd, buf, size);
     close(fd);
     if (bytes_read < 0)
