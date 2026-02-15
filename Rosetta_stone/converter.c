@@ -1,56 +1,41 @@
 #include "rush02.h"
 
-void    fill_dict(char *buf, t_dict *dict, int  i)
+void	fill_dict(char *buf, t_dict *dict, int i, int k)
 {
-    int     j;
-    int     k;
-    char    tmp[1024];
+	int		j;
+	char	tmp[1024];
 
-    k = 0;
-    while (buf[i])
-    {
-        i = skip_whitespace(buf, i);
-        if (buf[i] == '\0')
-			break ;
-        j = 0;
-        while (buf[i] >= '0' && buf[i] <= '9' && j < 127)
-            tmp[j++] = buf[i++];
-        tmp[j] = '\0';
-        dict[k].key = ft_strdup(tmp);
-        while (buf[i] != ':')
-            i++;
-        i = skip_whitespace(buf, i + 1);
-        j = 0;
-        while (buf[i] >= 32 && buf[i] <= 126 && j < 1023)
-            tmp[j++] = buf[i++];
-        tmp[j] = '\0';
-        dict[k++].value = ft_strdup(tmp);
-    }
-}
-
-int	simple_atoi(const char *str)
-{
-	int	res;
-	int	i;
-
-	res = 0;
-	i = 0;
-	while (str[i] >= '0' && str[i] <= '9')
+	while (buf[i])
 	{
-		res = res * 10 + (str[i] - '0');
-		i++;
+		i = skip_whitespace(buf, i);
+		if (buf[i] == '\0')
+			break ;
+		j = 0;
+		while (buf[i] >= '0' && buf[i] <= '9' && j < 127)
+			tmp[j++] = buf[i++];
+		tmp[j] = '\0';
+		if (!is_valid_nb(tmp))
+			return ;
+		dict[k].key = ft_strdup(tmp);
+		while (buf[i] != ':')
+			i++;
+		i = skip_whitespace(buf, i + 1);
+		j = 0;
+		while (buf[i] >= 32 && buf[i] <= 126 && j < 1023)
+			tmp[j++] = buf[i++];
+		tmp[j] = '\0';
+		dict[k++].value = ft_strdup(tmp);
 	}
-	return (res);
 }
 
 int	translate(char *num, t_dict *dict, int size)
 {
-    int     len;
+	int		len;
 	int		first;
 	int		value;
 	char	tmp[4];
 
-    len = ft_strlen(num);
+	len = ft_strlen(num);
 	if (len == 0)
 		return (1);
 	first = len % 3;
@@ -85,6 +70,34 @@ void	free_dict(t_dict *dict, int size)
 	free(dict);
 }
 
+int	check_unit(t_dict *dict, int size, int len)
+{
+	char	*tmp;
+	int		current;
+	int		i;
+
+	if (len % 3 == 0)
+		current = len - 2;
+	else
+		current = len - (len % 3) + 1;
+	while (current > 37)
+	{
+		tmp = malloc(sizeof(char) * (current + 1));
+		if (!tmp)
+			return (0);
+		tmp[0] = '1';
+		i = 1;
+		while (i < current)
+			tmp[i++] = '0';
+		tmp[i] = '\0';
+		if (!find_in_dict(tmp, dict, size))
+			return (free(tmp), 0);
+		free(tmp);
+		current -= 3;
+	}
+	return (1);
+}
+
 int	convert(char *path, char *input, int len)
 {
 	char	*num;
@@ -97,16 +110,18 @@ int	convert(char *path, char *input, int len)
 	if (!num || !buf)
 		return (free(num), free(buf), 0);
 	size = count_lines(buf);
-	if (!(dict = malloc(sizeof(t_dict) * size)))
+	dict = malloc(sizeof(t_dict) * size);
+	if (!dict)
 		return (free(num), free(buf), 0);
-	fill_dict(buf, dict, 0);
+	fill_dict(buf, dict, 0, 0);
+	if (len > 37)
+		if (check_unit(dict, size, len) == 0)
+			return (free_dict(dict, size), free(num), free(buf), 0);
 	if (num[0] == '0' && ft_strlen(num) == 1)
 		ft_putstr(find_in_dict("0", dict, size));
 	else if (!translate(num, dict, size))
-	{
-		write(1, "Dict Error\n", 11);
-		return (free_dict(dict, size), free(num), free(buf), 0);
-	}
+		return (write(1, "Dict Error\n", 11),
+			free_dict(dict, size), free(num), free(buf), 0);
 	write(1, "\n", 1);
 	return (free_dict(dict, size), free(num), free(buf), 1);
 }

@@ -90,7 +90,7 @@ int	print_unit(int len, t_dict *dict, int size)
 
 	if (len <= 3)
 		return (1);
-    tmp = malloc(sizeof(char) * (len + 1));
+	tmp = malloc(sizeof(char) * (len + 1));
 	if (!tmp)
 		return (0);
 	tmp[0] = '1';
