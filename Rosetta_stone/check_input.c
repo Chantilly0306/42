@@ -21,15 +21,15 @@ char	*rosetta_atoa(char *str, int len)
 	i = 0;
 	while (str[i] < '0' || str[i] > '9')
 		i++;
-	j = 0;
 	while (str[i] == '0')
 	{
-		num[j] = '0';
+		num[0] = '0';
 		i++;
 	}
+	j = 0;
 	while (str[i] >= '0' && str[i] <= '9')
 		num[j++] = str[i++];
-	num[j] = '\0';
+	num[len] = '\0';
 	return (num);
 }
 
