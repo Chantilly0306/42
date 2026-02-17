@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsilin <hsilin@learner.42.tech>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/13 11:05:07 by hsilin            #+#    #+#             */
-/*   Updated: 2026/02/17 10:52:41 by hsilin           ###   ########.fr       */
+/*   Created: 2026/02/17 10:04:18 by hsilin            #+#    #+#             */
+/*   Updated: 2026/02/17 10:29:59 by hsilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-char	*ft_strncpy(char *dest, char *src, unsigned int n)
+int	ft_strcmp(char *s1, char *s2)
 {
-	unsigned int	i;
-
-	i = 0;
-	while (i < n && src[i])
+	while (*s1 || *s2)
 	{
-		dest[i] = src[i];
-		i++;
+		if (*s1 != *s2)
+			return (*s1 - *s2);
+		s1++;
+		s2++;
 	}
-	return (dest);
+	return (0);
 }
 /*
 int	main(void)
 {
-	char	dest[30];
-
-	printf("%s\n", ft_strncpy(dest, "Hello World!", 5));
+	printf("%d\n", ft_strcmp("abc", "abcdef"));
+	return (0);
 }*/
