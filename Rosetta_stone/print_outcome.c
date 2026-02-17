@@ -1,12 +1,7 @@
 #include "rush02.h"
 
-char	*to_str(int n)
+char	*to_str(int n, char str[4])
 {
-	char	*str;
-
-	str = malloc(sizeof(char) * 4);
-	if (!str)
-		return (NULL);
 	if (n >= 100)
 	{
 		str[0] = (n / 100) + '0';
@@ -45,12 +40,12 @@ char	*find_in_dict(char *key, t_dict *dict, int size)
 void	print_hundred(int *n, t_dict *dict, int size)
 {
 	char	*tmp;
+	char	temp[4];
 
 	if (*n >= 100)
 	{
-		tmp = to_str(*n / 100);
+		tmp = to_str(*n / 100, temp);
 		ft_putstr(find_in_dict(tmp, dict, size));
-		free(tmp);
 		write(1, " ", 1);
 		ft_putstr(find_in_dict("100", dict, size));
 		if (*n % 100 != 0)
@@ -62,22 +57,21 @@ void	print_hundred(int *n, t_dict *dict, int size)
 int	print_3_digits(int n, t_dict *dict, int size)
 {
 	char	*tmp;
+	char	temp[4];
 
 	print_hundred(&n, dict, size);
 	if (n >= 20)
 	{
-		tmp = to_str((n / 10) * 10);
+		tmp = to_str((n / 10) * 10, temp);
 		ft_putstr(find_in_dict(tmp, dict, size));
-		free(tmp);
 		if (n % 10 != 0)
 			write(1, " ", 1);
 		n %= 10;
 	}
 	if (n > 0 && n < 20)
 	{
-		tmp = to_str(n);
+		tmp = to_str(n, temp);
 		ft_putstr(find_in_dict(tmp, dict, size));
-		free(tmp);
 	}
 	return (1);
 }
