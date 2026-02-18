@@ -6,12 +6,14 @@
 /*   By: hsilin <hsilin@learner.42.tech>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 13:35:26 by hsilin            #+#    #+#             */
-/*   Updated: 2026/02/18 16:43:37 by hsilin           ###   ########.fr       */
+/*   Updated: 2026/02/18 22:46:18 by hsilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
+#include "ft_stock_str.h"
+
 /*
 typedef struct s_stock_str
 {

@@ -11,6 +11,10 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdlib.h>
+#include "ft_stock_str.h"
+
+struct s_stock_str	*ft_strs_to_tab(int ac, char **av);
 
 /*
 typedef struct s_stock_str
@@ -55,8 +59,6 @@ void	ft_show_tab(struct s_stock_str *par)
 }
 
 /*
-#include <stdlib.h>
-
 int	ft_strlen(char *str)
 {
 	int	i;
