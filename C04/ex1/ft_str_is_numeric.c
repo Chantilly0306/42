@@ -1,33 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsilin <hsilin@learner.42.tech>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/18 11:14:42 by hsilin            #+#    #+#             */
-/*   Updated: 2026/02/18 11:14:45 by hsilin           ###   ########.fr       */
+/*   Created: 2026/02/03 15:45:06 by hsilin            #+#    #+#             */
+/*   Updated: 2026/02/03 15:45:51 by hsilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+int	ft_str_is_numeric(char *str)
 {
-	unsigned int	i;
+	int	i;
 
 	i = 0;
-	while ((s1[i] || s2[i]) && i < n)
+	while (str[i] != 0)
 	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		if (str[i] < 48 || str[i] > 57)
+			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
 }
-/*
+/*#include <unistd.h>
 int	main(void)
 {
-	printf("%d\n", ft_strncmp("abe", "abcdef", 3));
+	char	c;
+
+	c = '0' + ft_str_is_numeric("23;dc");
+	write(1, &c, 1);
+    c = '0' + ft_str_is_numeric("012345");
+    write(1, &c, 1);
+    c = '0' + ft_str_is_numeric("");
+    write(1, &c, 1);
+
 	return (0);
 }*/

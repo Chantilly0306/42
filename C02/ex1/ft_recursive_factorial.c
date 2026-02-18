@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_recursive_factorial.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsilin <hsilin@learner.42.tech>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/18 11:14:42 by hsilin            #+#    #+#             */
-/*   Updated: 2026/02/18 11:14:45 by hsilin           ###   ########.fr       */
+/*   Created: 2026/01/31 19:05:42 by hsilin            #+#    #+#             */
+/*   Updated: 2026/01/31 20:25:29 by hsilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
-
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+/*#include <stdio.h>*/
+int	ft_recursive_factorial(int nb)
 {
-	unsigned int	i;
-
-	i = 0;
-	while ((s1[i] || s2[i]) && i < n)
-	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
-	}
-	return (0);
+	if (nb == 0)
+		return (1);
+	if (nb < 0)
+		return (0);
+	return (nb * ft_recursive_factorial(nb - 1));
 }
-/*
-int	main(void)
+/*int	main(void)
 {
-	printf("%d\n", ft_strncmp("abe", "abcdef", 3));
+	int	n;
+
+	n = ft_recursive_factorial(5);
+	printf("%d\n", n);
+	n = ft_recursive_factorial(-5);
+    printf("%d\n", n);
+	n = ft_recursive_factorial(0);
+    printf("%d\n", n);
+	n = ft_recursive_factorial(123456);
+    printf("%d\n", n);
 	return (0);
 }*/

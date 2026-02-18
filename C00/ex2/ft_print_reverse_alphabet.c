@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_print_reverse_alphabet.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsilin <hsilin@learner.42.tech>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/18 11:14:42 by hsilin            #+#    #+#             */
-/*   Updated: 2026/02/18 11:14:45 by hsilin           ###   ########.fr       */
+/*   Created: 2026/01/29 09:26:23 by hsilin            #+#    #+#             */
+/*   Updated: 2026/01/29 09:37:10 by hsilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <unistd.h>
 
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+void	ft_print_reverse_alphabet(void)
 {
-	unsigned int	i;
+	int		i;
+	char	c;
 
 	i = 0;
-	while ((s1[i] || s2[i]) && i < n)
+	c = 'z';
+	while (i < 26)
 	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		write(1, &c, 1);
+		c--;
 		i++;
 	}
-	return (0);
 }
-/*
-int	main(void)
-{
-	printf("%d\n", ft_strncmp("abe", "abcdef", 3));
-	return (0);
-}*/

@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strupcase.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsilin <hsilin@learner.42.tech>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/18 11:14:42 by hsilin            #+#    #+#             */
-/*   Updated: 2026/02/18 11:14:45 by hsilin           ###   ########.fr       */
+/*   Created: 2026/02/03 15:49:57 by hsilin            #+#    #+#             */
+/*   Updated: 2026/02/03 15:50:06 by hsilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+char	*ft_strupcase(char *str)
 {
-	unsigned int	i;
+	int	i;
 
 	i = 0;
-	while ((s1[i] || s2[i]) && i < n)
+	while (str[i] != '\0')
 	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		if (str[i] >= 97 && str[i] <= 122)
+			str[i] -= 32;
 		i++;
 	}
-	return (0);
+	return (str);
 }
-/*
+/*#include <stdio.h>
 int	main(void)
 {
-	printf("%d\n", ft_strncmp("abe", "abcdef", 3));
+	char	s[] = "aBCdefghijklmnopqrstuvwxyz";
+
+	ft_strupcase(s);
+	printf("%s\n", s);
 	return (0);
 }*/

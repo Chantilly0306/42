@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_div_mod.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsilin <hsilin@learner.42.tech>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/18 11:14:42 by hsilin            #+#    #+#             */
-/*   Updated: 2026/02/18 11:14:45 by hsilin           ###   ########.fr       */
+/*   Created: 2026/02/01 15:35:04 by hsilin            #+#    #+#             */
+/*   Updated: 2026/02/01 16:43:52 by hsilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+void	ft_div_mod(int a, int b, int *div, int *mod)
 {
-	unsigned int	i;
-
-	i = 0;
-	while ((s1[i] || s2[i]) && i < n)
-	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
-	}
-	return (0);
+	*div = a / b;
+	*mod = a % b;
 }
-/*
+/*#include <stdio.h>
 int	main(void)
 {
-	printf("%d\n", ft_strncmp("abe", "abcdef", 3));
+	int	*div;
+	int	*mod;
+	int	c;
+	int	d;
+
+	div = &c;
+	mod = &d;
+	ft_div_mod(13, 5, div, mod);
+	printf("%d, %d\n", *div, *mod);
 	return (0);
 }*/

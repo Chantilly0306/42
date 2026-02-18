@@ -1,33 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_print_comb2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsilin <hsilin@learner.42.tech>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/18 11:14:42 by hsilin            #+#    #+#             */
-/*   Updated: 2026/02/18 11:14:45 by hsilin           ###   ########.fr       */
+/*   Created: 2026/01/29 20:24:03 by hsilin            #+#    #+#             */
+/*   Updated: 2026/01/29 21:54:51 by hsilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <unistd.h>
 
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+void	write_2_digits(int i)
 {
-	unsigned int	i;
+	char	n;
 
-	i = 0;
-	while ((s1[i] || s2[i]) && i < n)
+	n = '0' + i / 10;
+	write(1, &n, 1);
+	n = '0' + i % 10;
+	write(1, &n, 1);
+}
+
+void	ft_print_comb2(void)
+{
+	int	a;
+	int	b;
+
+	a = 0;
+	while (a <= 98)
 	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
+		b = a + 1;
+		while (b <= 99)
+		{
+			write_2_digits(a);
+			write(1, " ", 1);
+			write_2_digits(b);
+			if (a != 98 || b != 99)
+				write(1, ", ", 2);
+			b++;
+		}
+		a++;
 	}
-	return (0);
 }
 /*
 int	main(void)
 {
-	printf("%d\n", ft_strncmp("abe", "abcdef", 3));
+	ft_print_comb2();
 	return (0);
-}*/
+}
+*/

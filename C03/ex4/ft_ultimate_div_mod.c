@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_ultimate_div_mod.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsilin <hsilin@learner.42.tech>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/18 11:14:42 by hsilin            #+#    #+#             */
-/*   Updated: 2026/02/18 11:14:45 by hsilin           ###   ########.fr       */
+/*   Created: 2026/02/01 16:45:47 by hsilin            #+#    #+#             */
+/*   Updated: 2026/02/01 17:26:08 by hsilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+void	ft_ultimate_div_mod(int *a, int *b)
 {
-	unsigned int	i;
+	int	c;
 
-	i = 0;
-	while ((s1[i] || s2[i]) && i < n)
-	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
-	}
-	return (0);
+	c = *a;
+	*a = c / *b;
+	*b = c % *b;
 }
-/*
+/*#include <stdio.h>
 int	main(void)
 {
-	printf("%d\n", ft_strncmp("abe", "abcdef", 3));
+	int	*a;
+	int	*b;
+	int	c;
+	int	d;
+
+	a = &c;
+	b = &d;
+	*a = 13;
+	*b = 5;
+	ft_ultimate_div_mod(a, b);
+	printf("%d, %d\n", c, d);
 	return (0);
 }*/

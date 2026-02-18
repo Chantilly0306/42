@@ -1,33 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsilin <hsilin@learner.42.tech>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/18 11:14:42 by hsilin            #+#    #+#             */
-/*   Updated: 2026/02/18 11:14:45 by hsilin           ###   ########.fr       */
+/*   Created: 2026/02/01 13:12:53 by hsilin            #+#    #+#             */
+/*   Updated: 2026/02/01 15:24:49 by hsilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+void	ft_swap(int *a, int *b)
 {
-	unsigned int	i;
+	int	c;
 
-	i = 0;
-	while ((s1[i] || s2[i]) && i < n)
-	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
-	}
-	return (0);
+	c = *a;
+	*a = *b;
+	*b = c;
 }
-/*
+/*#include <stdio.h>
 int	main(void)
 {
-	printf("%d\n", ft_strncmp("abe", "abcdef", 3));
+	int	*a;
+	int *b;
+	int c;
+	int d;
+
+	a = &c;
+	b = &d;
+	*a = 3;
+	*b = 5;
+    printf("%d\n", c);
+    printf("%d\n", d);
+	ft_swap(a, b);
+    printf("%d\n", c);
+    printf("%d\n", d);
 	return (0);
 }*/

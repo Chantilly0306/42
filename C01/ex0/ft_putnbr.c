@@ -1,33 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsilin <hsilin@learner.42.tech>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/18 11:14:42 by hsilin            #+#    #+#             */
-/*   Updated: 2026/02/18 11:14:45 by hsilin           ###   ########.fr       */
+/*   Created: 2026/01/29 11:35:21 by hsilin            #+#    #+#             */
+/*   Updated: 2026/01/29 22:01:39 by hsilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <unistd.h>
 
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+void	ft_putnbr(int nb)
 {
-	unsigned int	i;
+	char	c;
 
-	i = 0;
-	while ((s1[i] || s2[i]) && i < n)
+	if (nb == -2147483648)
 	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
+		write(1, "-2147483648", 11);
+		return ;
 	}
-	return (0);
+	if (nb < 0)
+	{
+		write(1, "-", 1);
+		nb = -nb;
+	}
+	if (nb >= 10)
+	{
+		ft_putnbr(nb / 10);
+	}
+	c = '0' + nb % 10;
+	write(1, &c, 1);
 }
 /*
 int	main(void)
 {
-	printf("%d\n", ft_strncmp("abe", "abcdef", 3));
+	ft_putnbr(0);
+	write(1, "\n", 1);
+	ft_putnbr(1234567);
+	write(1, "\n", 1);
+	ft_putnbr(-123456);
+	write(1, "\n", 1);
+	ft_putnbr(-2147483648);
+	write(1, "\n", 1);
 	return (0);
-}*/
+}
+*/

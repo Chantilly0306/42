@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsilin <hsilin@learner.42.tech>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/18 11:14:42 by hsilin            #+#    #+#             */
-/*   Updated: 2026/02/18 11:14:45 by hsilin           ###   ########.fr       */
+/*   Created: 2026/02/03 15:49:04 by hsilin            #+#    #+#             */
+/*   Updated: 2026/02/03 15:49:15 by hsilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+int	ft_str_is_printable(char *str)
 {
-	unsigned int	i;
+	int	i;
 
 	i = 0;
-	while ((s1[i] || s2[i]) && i < n)
+	while (str[i] != '\0')
 	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		if (str[i] < 32 || str[i] > 126)
+			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
 }
-/*
+/*#include <unistd.h>
 int	main(void)
 {
-	printf("%d\n", ft_strncmp("abe", "abcdef", 3));
+	char	c;
+
+	c = '0' + ft_str_is_printable("€42");
+	write(1, &c, 1);
+	c = '0' + ft_str_is_printable(" ABCDEF");
+	write(1, &c, 1);
+	c = '0' + ft_str_is_printable("");
+	write(1, &c, 1);
 	return (0);
 }*/

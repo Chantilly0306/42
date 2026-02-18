@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsilin <hsilin@learner.42.tech>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/18 11:14:42 by hsilin            #+#    #+#             */
-/*   Updated: 2026/02/18 11:14:45 by hsilin           ###   ########.fr       */
+/*   Created: 2026/01/28 21:30:32 by hsilin            #+#    #+#             */
+/*   Updated: 2026/01/28 22:13:42 by hsilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <unistd.h>
 
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+void	ft_putchar(char c)
 {
-	unsigned int	i;
-
-	i = 0;
-	while ((s1[i] || s2[i]) && i < n)
-	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
-	}
-	return (0);
+	write(1, &c, 1);
 }
-/*
-int	main(void)
-{
-	printf("%d\n", ft_strncmp("abe", "abcdef", 3));
-	return (0);
-}*/

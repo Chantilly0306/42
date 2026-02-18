@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_is_negative.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsilin <hsilin@learner.42.tech>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/18 11:14:42 by hsilin            #+#    #+#             */
-/*   Updated: 2026/02/18 11:14:45 by hsilin           ###   ########.fr       */
+/*   Created: 2026/01/29 10:03:49 by hsilin            #+#    #+#             */
+/*   Updated: 2026/01/29 10:43:36 by hsilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <unistd.h>
 
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+void	ft_is_negative(int n)
 {
-	unsigned int	i;
-
-	i = 0;
-	while ((s1[i] || s2[i]) && i < n)
+	if (n < 0)
 	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
+		write(1, "N", 1);
 	}
-	return (0);
+	else
+	{
+		write(1, "P", 1);
+	}
 }
-/*
-int	main(void)
-{
-	printf("%d\n", ft_strncmp("abe", "abcdef", 3));
-	return (0);
-}*/

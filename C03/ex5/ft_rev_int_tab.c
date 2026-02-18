@@ -1,33 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_rev_int_tab.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsilin <hsilin@learner.42.tech>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/18 11:14:42 by hsilin            #+#    #+#             */
-/*   Updated: 2026/02/18 11:14:45 by hsilin           ###   ########.fr       */
+/*   Created: 2026/02/01 17:27:47 by hsilin            #+#    #+#             */
+/*   Updated: 2026/02/01 22:16:13 by hsilin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+void	ft_rev_int_tab(int *tab, int size)
 {
-	unsigned int	i;
+	int	index;
+	int	temp;
 
-	i = 0;
-	while ((s1[i] || s2[i]) && i < n)
+	index = 0;
+	while (index < size / 2)
 	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
+		temp = tab[index];
+		tab[index] = tab[size - index - 1];
+		tab[size - index - 1] = temp;
+		index++;
 	}
-	return (0);
 }
-/*
+/*#include <stdio.h>
 int	main(void)
 {
-	printf("%d\n", ft_strncmp("abe", "abcdef", 3));
+	int	tab[] = {9, 12, 0, -6, 4};
+	int	size;
+	int	i;
+
+	size = 5;
+	ft_rev_int_tab(tab, size);
+	i = 0;
+	while (i < size)
+	{
+		printf("%d\n", tab[i]);
+		i++;
+	}
 	return (0);
 }*/
