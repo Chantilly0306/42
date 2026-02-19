@@ -15,8 +15,6 @@ void    ft_list_push_back(t_list **begin_list, void *data)
     }
     current = *begin_list;
     while (current->next)
-    {
         current = current->next;
-    }
     current->next = tail;
 }
