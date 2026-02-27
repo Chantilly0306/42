@@ -4,12 +4,12 @@ OBJS = $(SRCS:.c=.o)
 CFLAGS += -Wall -Wextra -Werror
 
 $(NAME): $(OBJS)
-	cc -o (NAME) $(OBJS)
+	cc -o $(NAME) $(OBJS)
 
 all: $(NAME)
 
 clean:
 	rm -f $(OBJS)
 
-fclean:
+fclean: clean
 	rm -f $(NAME)
