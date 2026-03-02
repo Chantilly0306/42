@@ -1,10 +1,10 @@
 NAME = ft_tail
 SRCS = ft_tail.c
 OBJS = $(SRCS:.c=.o)
-CFLAGS += -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 $(NAME): $(OBJS)
-	cc -o $(NAME) $(OBJS)
+	cc $(CFLAGS) -o $(NAME) $(OBJS)
 
 all: $(NAME)
 
