@@ -1,4 +1,5 @@
 #include "ft_list.h"
+#include <stdio.h>
 
 t_list  *ft_list_push_strs(int size, char **strs)
 {
@@ -20,3 +21,12 @@ t_list  *ft_list_push_strs(int size, char **strs)
     }
     return (list);
 }
+
+/*int main(void)
+{
+    char    *strs[] = {"Apple", "Banana", "Candy"};
+    t_list  *new_list;
+
+    new_list = ft_list_push_strs(3, strs);
+    printf("%s\n", (char *)(new_list->data));
+}*/
