@@ -15,7 +15,12 @@ void    ft_list_clear(t_list *begin_list, void (*free_fct)(void *))
     }
 }
 
-/*char    *ft_strdup(char *str)
+/*void    free_fct(void *data)
+{
+    free(data);
+}
+
+char    *ft_strdup(char *str)
 {
     int     i = 0;
     char    *res;
