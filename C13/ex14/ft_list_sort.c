@@ -1,6 +1,7 @@
 #include "ft_list.h"
 #include <stdio.h>
 
+// Only swap data
 void    ft_list_sort(t_list **begin_list, int (*cmp)(void *, void *))
 {
     t_list  *current;
@@ -24,6 +25,77 @@ void    ft_list_sort(t_list **begin_list, int (*cmp)(void *, void *))
             search = search->next;
         }
         current = current->next;
+    }
+}
+
+// Swapping node by bubble sort with dummy node
+void    ft_list_sort(t_list **begin_list, int (*cmp)(void *, void *))
+{
+    t_list  *dummy;
+    t_list  *prev;
+    t_list  *curr;
+    t_list  *next;
+    int     swapped;
+
+    if (!begin_list || !*begin_list || !cmp)
+        return ;
+    dummy = ft_create_elem(NULL);
+    dummy->next = *begin_list;
+    swapped = 1;
+    while (swapped)
+    {
+        swapped = 0;
+        prev = dummy;
+        curr = prev->next;
+        while (curr && curr->next)
+        {
+            next = curr->next;
+            if (cmp(curr->data, next->data) > 0)
+            {
+                prev->next = next;
+                curr->next = next->next;
+                next->next = curr;
+                swapped = 1;
+                prev = next;
+            }
+            else
+            {
+                prev = curr;
+                curr = next;
+            }
+        }
+    }
+    *begin_list = dummy->next;
+    free(dummy);
+}
+
+// Swapping node by selection sort without malloc
+void    ft_list_sort(t_list **begin_list, int (*cmp)(void *, void *))
+{
+    t_list  **curr;
+    t_list  **min;
+    t_list  **search;
+    t_list  *tmp;
+
+    if (!begin_list || !*begin_list || !cmp)
+        return ;
+    curr = begin_list;
+    while (*curr && (*curr)->next)
+    {
+        min = curr;
+        search = &((*curr)->next);
+        while (*search)
+        {
+            if (cmp((*min)->data, (*search)->data) > 0)
+                min = search;
+            search = &((*search)->next);
+        }
+        if (min != curr)
+        {
+            tmp = *curr;
+            *curr = 
+        }
+        curr = &((*curr)->next);
     }
 }
 
