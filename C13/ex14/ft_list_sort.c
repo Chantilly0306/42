@@ -69,36 +69,6 @@ void    ft_list_sort(t_list **begin_list, int (*cmp)(void *, void *))
     free(dummy);
 }
 
-// Swapping node by selection sort without malloc
-void    ft_list_sort(t_list **begin_list, int (*cmp)(void *, void *))
-{
-    t_list  **curr;
-    t_list  **min;
-    t_list  **search;
-    t_list  *tmp;
-
-    if (!begin_list || !*begin_list || !cmp)
-        return ;
-    curr = begin_list;
-    while (*curr && (*curr)->next)
-    {
-        min = curr;
-        search = &((*curr)->next);
-        while (*search)
-        {
-            if (cmp((*min)->data, (*search)->data) > 0)
-                min = search;
-            search = &((*search)->next);
-        }
-        if (min != curr)
-        {
-            tmp = *curr;
-            *curr = 
-        }
-        curr = &((*curr)->next);
-    }
-}
-
 int cmp(void *data1, void *data2)
 {
     int     i = 0;
@@ -119,7 +89,7 @@ int cmp(void *data1, void *data2)
 int main(void)
 {
     int     i = 0;
-    char    *strs[] = {"abc", "abcde", "abc", "ghi", "ghi", NULL};
+    char    *strs[] = {"ab", "abcde", "abc", "ghi", "jk", NULL};
     t_list  *tmp = NULL;
     t_list  *new_list;
 
