@@ -1,7 +1,7 @@
 #include "ft_list.h"
 #include <stdio.h>
+#include <stdlib.h>
 
-// Solution 1 Time complexity O(n^2)
 int ft_list_size(t_list *begin_list)
 {
     int size;
@@ -15,7 +15,8 @@ int ft_list_size(t_list *begin_list)
     return (size);
 }
 
-void    ft_list_reverse_fun(t_list *begin_list)
+// Solution 1 Time complexity O(n^2)
+/*void    ft_list_reverse_fun(t_list *begin_list)
 {
     int     i;
     int     j;
@@ -39,18 +40,65 @@ void    ft_list_reverse_fun(t_list *begin_list)
         begin_list = begin_list->next;
         i++;
     }
-}
+}*/
 
 // Solution 2 Time complexity O(n) with malloc array
-void    ft_list_reverse_fun(t_list *begin_list)
+/*void    ft_list_reverse_fun(t_list *begin_list)
 {
+    int     i;
+    int     size;
+    void    *tmp;
+    void    **arr;
+    t_list  *curr;
 
-}
+    if (!begin_list)
+        return ;
+    size = ft_list_size(begin_list);
+    arr = malloc(sizeof(void *) * size);
+    if (!arr)
+        return ;
+    curr = begin_list;
+    for (i = 0; i < size; i++)
+    {
+        arr[i] = curr->data;
+        curr = curr->next;
+    }
+    for (i = 0; i < size / 2; i++)
+    {
+        tmp = arr[i];
+        arr[i] = arr[size - i - 1];
+        arr[size - i - 1] = tmp;
+    }
+    for (i = 0; i < size; i++)
+    {
+        begin_list->data = arr[i];
+        begin_list = begin_list->next;
+    }
+    free (arr);
+}*/
 
 // Solution 3 Time complexity O(n) with recursion
+void    reverse_recursive(t_list **left, t_list *right)
+{
+    void    *tmp;
+
+    if (!right)
+        return ;
+    reverse_recursive(left, right->next);
+    if ()
+    // How to stop at the middle?
+    tmp = right->data;
+    right->data = (*left)->data;
+    (*left)->data = tmp;
+    *left = (*left)->next;
+}
+
 void    ft_list_reverse_fun(t_list *begin_list)
 {
+    t_list  **left;
 
+    left = &begin_list;
+    reverse_recursive(left, begin_list);
 }
 
 int main(void)
