@@ -43,11 +43,9 @@ void    ft_list_merge(t_list **begin_list1, t_list *begin_list2)
         tmp = list2;
         i++;
     }
-    ft_list_merge(&list1, list2);
-    printf("%s\n", (char *)(list1->data));
-    printf("%s\n", (char *)(list1->next->data));
-    printf("%s\n", (char *)(list1->next->next->data));
-    printf("%s\n", (char *)(list1->next->next->next->data));
-    printf("%s\n", (char *)(list1->next->next->next->next->data));
-    printf("%s\n", (char *)(list1->next->next->next->next->next->data));
+    while (list1)
+    {
+        printf("%s\n", (char *)(list1->data));
+        list1 = list1->next;
+    }
 }*/

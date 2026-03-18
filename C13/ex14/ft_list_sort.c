@@ -86,7 +86,7 @@ int cmp(void *data1, void *data2)
     return (str1[i] - str2[i]);
 }
 
-int main(void)
+/*int main(void)
 {
     int     i = 0;
     char    *strs[] = {"ab", "abcde", "abc", "ghi", "jk", NULL};
@@ -101,9 +101,9 @@ int main(void)
         i++;
     }
     ft_list_sort(&new_list, cmp);
-    printf("%s\n", (char *)(new_list->data));
-    printf("%s\n", (char *)(new_list->next->data));
-    printf("%s\n", (char *)(new_list->next->next->data));
-    printf("%s\n", (char *)(new_list->next->next->next->data));
-    printf("%s\n", (char *)(new_list->next->next->next->next->data));
-}
+    while (new_list)
+    {
+        printf("%s\n", (char *)(new_list->data));
+        new_list = new_list->next;
+    }
+}*/
