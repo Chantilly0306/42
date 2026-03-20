@@ -16,7 +16,7 @@ int ft_list_size(t_list *begin_list)
 }
 
 // Solution 1 Time complexity O(n^2)
-/*void    ft_list_reverse_fun(t_list *begin_list)
+void    ft_list_reverse_fun(t_list *begin_list)
 {
     int     i;
     int     j;
@@ -40,10 +40,10 @@ int ft_list_size(t_list *begin_list)
         begin_list = begin_list->next;
         i++;
     }
-}*/
+}
 
 // Solution 2 Time complexity O(n) with malloc array
-/*void    ft_list_reverse_fun(t_list *begin_list)
+void    ft_list_reverse_fun(t_list *begin_list)
 {
     int     i;
     int     size;
@@ -75,36 +75,41 @@ int ft_list_size(t_list *begin_list)
         begin_list = begin_list->next;
     }
     free (arr);
-}*/
+}
 
 // Solution 3 Time complexity O(n) with recursion
-void    reverse_recursive(t_list **left, t_list *right)
+void    reverse_recursive(t_list **left, t_list *right, int *size)
 {
     void    *tmp;
 
     if (!right)
         return ;
-    reverse_recursive(left, right->next);
-    if ()
-    // How to stop at the middle?
+    reverse_recursive(left, right->next, size);
+    if (*size < 2)
+        return ;
     tmp = right->data;
     right->data = (*left)->data;
     (*left)->data = tmp;
     *left = (*left)->next;
+    *size -= 2;
 }
 
 void    ft_list_reverse_fun(t_list *begin_list)
 {
+    int     size;
     t_list  **left;
 
+    if (!begin_list)
+        return ;
+    size = ft_list_size(begin_list);
     left = &begin_list;
-    reverse_recursive(left, begin_list);
+    reverse_recursive(left, begin_list->next, &size);
 }
 
-int main(void)
+/*int main(void)
 {
     int     i = 0;
-    char    *strs[] = {"ab", "xyz", "abc", "ghi", "jk", NULL};
+    char    *strs[] = {"ab", "xyz", "abc", "ghi", "jk", "qrs", NULL};
     t_list  *tmp = NULL;
     t_list  *new_list;
 
@@ -121,4 +126,4 @@ int main(void)
         printf("%s\n", (char *)(new_list->data));
         new_list = new_list->next;
     }
-}
+}*/
