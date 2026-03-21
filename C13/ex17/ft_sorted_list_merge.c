@@ -4,7 +4,28 @@
 void    ft_sorted_list_merge(t_list **begin_list1, t_list *begin_list2,
         int (*cmp)(void *, void *))
 {
+    t_list  **cursor;
+    t_list  *tmp;
 
+    if (!begin_list1 || !begin_list2 || !cmp)
+        return ;
+    cursor = begin_list1;
+    while (begin_list2)
+    {
+        if (!*cursor)
+        {
+            *cursor = begin_list2;
+            break ;
+        }
+        if (cmp((*cursor)->data, begin_list2->data) > 0)
+        {
+            tmp = begin_list2->next;
+            begin_list2->next = *cursor;
+            *cursor = begin_list2;
+            begin_list2 = tmp;
+        }
+        cursor = &((*cursor)->next);
+    }
 }
 
 int cmp(void *data1, void *data2)
@@ -27,8 +48,8 @@ int cmp(void *data1, void *data2)
 int main(void)
 {
     int     i = 0;
-    char    *strs1[] = {"tuv", "abcde", "qrs", "ghi", "jk", NULL};
-    char    *strs2[] = {"z", "efg", "abc", "cd", "xy", NULL};
+    char    *strs1[] = {"f", "e", "c", NULL};
+    char    *strs2[] = {"g", "d", "b", "a", NULL};
     t_list  *tmp = NULL;
     t_list  *new_list;
     t_list  *add_list;
@@ -40,6 +61,7 @@ int main(void)
         tmp = new_list;
         i++;
     }
+    i = 0;
     tmp = NULL;
     while (strs2[i])
     {
