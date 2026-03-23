@@ -1,5 +1,5 @@
-#ifndef FT_BREEE_H
-# define FT_BREEE_H
+#ifndef FT_BTREE_H
+# define FT_BTREE_H
 
 #include <stdlib.h>
 #include <stdio.h>

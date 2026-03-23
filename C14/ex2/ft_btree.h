@@ -1,4 +1,16 @@
-#include "ft_btree.h"
+#ifndef FT_BTREE_H
+# define FT_BTREE_H
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+
+typedef struct  s_btree
+{
+    struct s_btree  *left;
+    struct s_btree  *right;
+    void            *item;
+}   t_btree;
 
 t_btree *btree_create_node(void *item)
 {
@@ -12,3 +24,5 @@ t_btree *btree_create_node(void *item)
     new_node->item = item;
     return (new_node);
 }
+
+#endif
